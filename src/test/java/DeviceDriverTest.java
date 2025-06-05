@@ -85,6 +85,7 @@ public class DeviceDriverTest {
         for (long addr = startAddr; addr <= endAddr; addr++) {
             verify(hardware, times(5)).read(addr);
         }
+        //verify(hardware, times(5*(int)(endAddr-startAddr+1))).read(anyLong());
     }
 
     @Test
@@ -96,6 +97,9 @@ public class DeviceDriverTest {
         when(hardware.read(0x04)).thenReturn((byte) 0xFF);
 
         driver.writeAll((byte) 0x01);
+
+        //verify(hardware, times(5)).read(anyLong());
+        //verify(hardware, times(5)).write(anyLong(), anyByte());
 
         verify(hardware, times(1)).read(0x00);
         verify(hardware, times(1)).write(0x00, (byte) 0x01);
