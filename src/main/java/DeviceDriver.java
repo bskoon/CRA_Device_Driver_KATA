@@ -6,12 +6,10 @@ public class DeviceDriver {
     FlashMemoryDevice hw;
 
     public DeviceDriver(FlashMemoryDevice hardware) {
-        // TODO: implement this method
         hw = hardware;
     }
 
     public byte read(long address) {
-        // TODO: implement this method
         byte data = hw.read(address);
         checkReadPostCondition(address, data);
         return data;
