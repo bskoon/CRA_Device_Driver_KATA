@@ -35,6 +35,9 @@ public class DeviceDriverTest {
 
     @Test
     void writeReadTime() {
+        when(hardware.read(0xBB))
+                .thenReturn((byte) 0xFF);
+
         driver.write(0xBB, (byte) 0x01);
 
         verify(hardware, times(1)).read(0xBB);
@@ -64,7 +67,7 @@ public class DeviceDriverTest {
         //hardware read method setup
         try {
             when(hardware.read(0xFF))
-                    .thenReturn((byte) 0xFF);
+                    .thenReturn((byte) 0x00);
 
             driver.write(0xFF, (byte) 0x01);
             fail();
@@ -86,6 +89,12 @@ public class DeviceDriverTest {
 
     @Test
     void writeAllTest() {
+        when(hardware.read(0x00)).thenReturn((byte) 0xFF);
+        when(hardware.read(0x01)).thenReturn((byte) 0xFF);
+        when(hardware.read(0x02)).thenReturn((byte) 0xFF);
+        when(hardware.read(0x03)).thenReturn((byte) 0xFF);
+        when(hardware.read(0x04)).thenReturn((byte) 0xFF);
+
         driver.writeAll((byte) 0x01);
 
         verify(hardware, times(1)).read(0x00);

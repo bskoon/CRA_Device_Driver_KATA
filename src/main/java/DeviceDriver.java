@@ -31,7 +31,7 @@ public class DeviceDriver {
 
     private void checkWritePreCondition(long address) {
         byte readData = hw.read(address);
-        if (readData == (byte) 0xFF) {
+        if (readData != (byte) 0xFF) {
             throw new WriteFailException("Write Fail From Flash Memory");
         }
     }
