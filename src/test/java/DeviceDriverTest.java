@@ -37,7 +37,7 @@ public class DeviceDriverTest {
     void writeReadTime() {
         driver.write(0xBB, (byte) 0x01);
 
-        verify(hardware, times(5)).read(0xBB);
+        verify(hardware, times(1)).read(0xBB);
         verify(hardware, times(1)).write(0xBB, (byte) 0x01);
     }
 
@@ -88,15 +88,15 @@ public class DeviceDriverTest {
     void writeAllTest() {
         driver.writeAll((byte) 0x01);
 
-        verify(hardware, times(5)).read(0x00);
+        verify(hardware, times(1)).read(0x00);
         verify(hardware, times(1)).write(0x00, (byte) 0x01);
-        verify(hardware, times(5)).read(0x01);
+        verify(hardware, times(1)).read(0x01);
         verify(hardware, times(1)).write(0x01, (byte) 0x01);
-        verify(hardware, times(5)).read(0x02);
+        verify(hardware, times(1)).read(0x02);
         verify(hardware, times(1)).write(0x02, (byte) 0x01);
-        verify(hardware, times(5)).read(0x03);
+        verify(hardware, times(1)).read(0x03);
         verify(hardware, times(1)).write(0x03, (byte) 0x01);
-        verify(hardware, times(5)).read(0x04);
+        verify(hardware, times(1)).read(0x04);
         verify(hardware, times(1)).write(0x04, (byte) 0x01);
     }
 }
